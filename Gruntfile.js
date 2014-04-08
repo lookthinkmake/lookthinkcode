@@ -37,7 +37,8 @@ module.exports = function (grunt) {
                 options: {
                     loadPath: [
                         '<%= config.app %>/bower_components/bourbon/app/assets/stylesheets',
-                        '<%= config.app %>/bower_components/neat/app/assets/stylesheets'
+                        '<%= config.app %>/bower_components/neat/app/assets/stylesheets',
+                        '<%= config.app %>/bower_components/bitters/app/assets/stylesheets'
                     ]
                 }
             }
