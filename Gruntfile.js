@@ -26,20 +26,20 @@ module.exports = function (grunt) {
         },
         sass: {
             dist: {
-              files: [{
-                expand: true,
-                cwd: '<%= yeoman.app %>/sass',
-                src: ['*.scss'],
-                dest: '<%= yeoman.app %>/css',
-                ext: '.css'
-              }],
+                files: [{
+                    expand: true,
+                    cwd: '<%= config.app %>/sass',
+                    src: ['*.scss'],
+                    dest: '<%= config.app %>/css',
+                    ext: '.css'
+                }],
 
-              options: {
-                loadPath: [
-                  '<%= yeoman.app %>/bower_components/bourbon/app/assets/stylesheets',
-                  '<%= yeoman.app %>/bower_components/neat/app/assets/stylesheets'
-                ]
-              }
+                options: {
+                    loadPath: [
+                        '<%= config.app %>/bower_components/bourbon/app/assets/stylesheets',
+                        '<%= config.app %>/bower_components/neat/app/assets/stylesheets'
+                    ]
+                }
             }
         },
         // Watches files for changes and runs tasks based on the changed files
@@ -63,7 +63,7 @@ module.exports = function (grunt) {
                 files: ['Gruntfile.js']
             },
             styles: {
-                files: ['<%= yeoman.app %>/sass/{,*/}*.scss'],
+                files: ['<%= config.app %>/sass/{,*/}*.scss'],
                 tasks: ['sass', 'newer:copy:styles', 'autoprefixer']
             },
             livereload: {
