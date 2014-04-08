@@ -24,7 +24,24 @@ module.exports = function (grunt) {
             app: 'app',
             dist: 'dist'
         },
+        sass: {
+            dist: {
+              files: [{
+                expand: true,
+                cwd: '<%= yeoman.app %>/sass',
+                src: ['*.scss'],
+                dest: '<%= yeoman.app %>/css',
+                ext: '.css'
+              }],
 
+              options: {
+                loadPath: [
+                  '<%= yeoman.app %>/bower_components/bourbon/app/assets/stylesheets',
+                  '<%= yeoman.app %>/bower_components/neat/app/assets/stylesheets'
+                ]
+              }
+            }
+        },
         // Watches files for changes and runs tasks based on the changed files
         watch: {
             bower: {
@@ -46,8 +63,8 @@ module.exports = function (grunt) {
                 files: ['Gruntfile.js']
             },
             styles: {
-                files: ['<%= config.app %>/styles/{,*/}*.css'],
-                tasks: ['newer:copy:styles', 'autoprefixer']
+                files: ['<%= yeoman.app %>/sass/{,*/}*.scss'],
+                tasks: ['sass', 'newer:copy:styles', 'autoprefixer']
             },
             livereload: {
                 options: {
@@ -55,7 +72,7 @@ module.exports = function (grunt) {
                 },
                 files: [
                     '<%= config.app %>/{,*/}*.html',
-                    '.tmp/styles/{,*/}*.css',
+                    '.tmp/css/{,*/}*.css',
                     '<%= config.app %>/images/{,*/}*'
                 ]
             }
@@ -144,9 +161,9 @@ module.exports = function (grunt) {
             dist: {
                 files: [{
                     expand: true,
-                    cwd: '.tmp/styles/',
+                    cwd: '.tmp/css/',
                     src: '{,*/}*.css',
-                    dest: '.tmp/styles/'
+                    dest: '.tmp/css/'
                 }]
             }
         },
@@ -165,9 +182,9 @@ module.exports = function (grunt) {
                 files: {
                     src: [
                         '<%= config.dist %>/scripts/{,*/}*.js',
-                        '<%= config.dist %>/styles/{,*/}*.css',
+                        '<%= config.dist %>/css/{,*/}*.css',
                         '<%= config.dist %>/images/{,*/}*.*',
-                        '<%= config.dist %>/styles/fonts/{,*/}*.*',
+                        '<%= config.dist %>/css/fonts/{,*/}*.*',
                         '<%= config.dist %>/*.{ico,png}'
                     ]
                 }
@@ -190,7 +207,7 @@ module.exports = function (grunt) {
                 assetsDirs: ['<%= config.dist %>', '<%= config.dist %>/images']
             },
             html: ['<%= config.dist %>/{,*/}*.html'],
-            css: ['<%= config.dist %>/styles/{,*/}*.css']
+            css: ['<%= config.dist %>/css/{,*/}*.css']
         },
 
         // The following *-min tasks produce minified files in the dist folder
@@ -276,15 +293,15 @@ module.exports = function (grunt) {
                         '.htaccess',
                         'images/{,*/}*.webp',
                         '{,*/}*.html',
-                        'styles/fonts/{,*/}*.*'
+                        'css/fonts/{,*/}*.*'
                     ]
                 }]
             },
             styles: {
                 expand: true,
                 dot: true,
-                cwd: '<%= config.app %>/styles',
-                dest: '.tmp/styles/',
+                cwd: '<%= config.app %>/css',
+                dest: '.tmp/css/',
                 src: '{,*/}*.css'
             }
         },
@@ -296,7 +313,7 @@ module.exports = function (grunt) {
             outputFile: '<%= config.dist %>/scripts/vendor/modernizr.js',
             files: [
                 '<%= config.dist %>/scripts/{,*/}*.js',
-                '<%= config.dist %>/styles/{,*/}*.css',
+                '<%= config.dist %>/css/{,*/}*.css',
                 '!<%= config.dist %>/scripts/vendor/*'
             ],
             uglify: true
@@ -365,6 +382,7 @@ module.exports = function (grunt) {
         'modernizr',
         'rev',
         'usemin',
+        'sass',
         'htmlmin'
     ]);
 
