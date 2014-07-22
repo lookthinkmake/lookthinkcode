@@ -1,34 +1,26 @@
 {
-  "name": "lookthinkcode",
-  "version": "0.0.0",
-  "dependencies": {},
-  "devDependencies": {
-    "grunt": "~0.4.1",
-    "grunt-contrib-copy": "~0.4.1",
-    "grunt-contrib-concat": "~0.3.0",
-    "grunt-contrib-uglify": "~0.2.0",
-    "grunt-contrib-jshint": "~0.7.0",
-    "grunt-contrib-cssmin": "~0.7.0",
-    "grunt-contrib-connect": "~0.5.0",
-    "grunt-contrib-clean": "~0.5.0",
-    "grunt-contrib-htmlmin": "~0.1.3",
-    "grunt-bower-install": "~1.0.0",
-    "grunt-contrib-imagemin": "~0.5.0",
-    "grunt-contrib-watch": "~0.5.2",
-    "grunt-rev": "~0.1.0",
-    "grunt-autoprefixer": "~0.5.0",
-    "grunt-usemin": "~2.0.0",
-    "grunt-mocha": "~0.4.0",
-    "grunt-modernizr": "~0.4.0",
-    "grunt-newer": "~0.6.0",
-    "grunt-svgmin": "~0.2.0",
-    "grunt-concurrent": "~0.4.0",
-    "load-grunt-tasks": "~0.2.0",
-    "time-grunt": "~0.2.0",
-    "jshint-stylish": "~0.1.3",
-    "grunt-contrib-sass": "~0.7.3"
+  "name": "fastshell",
+  "title": "Fiercely quick and opinionated front-ends",
+  "author": "Hossein Karami",
+  "url": "https://HosseinKarami.github.io/fastshell",
+  "version": "1.0.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/HosseinKarami/fastshell.git"
   },
-  "engines": {
-    "node": ">=0.8.0"
+  "devDependencies": {
+    "browser-sync": "^1.3.0",
+    "gulp": "^3.8.6",
+    "gulp-autoprefixer": "0.0.8",
+    "gulp-header": "^1.0.5",
+    "gulp-jshint": "^1.7.1",
+    "gulp-minify-css": "^0.3.7",
+    "gulp-rename": "^1.2.0",
+    "gulp-sass": "^0.7.2",
+    "gulp-uglify": "^0.3.1",
+    "gulp-watch": "*",
+    "node-bourbon": "*",
+    "node-neat": "*"
   }
 }
