@@ -1,0 +1,11 @@
+// Screen Sizes
+$mobile-size:em(480);
+$tablet-size:em(768);
+$desktop-size:em(960);
+$largedesktop-size:em(1050);
+
+// Breakpoints
+$mobile: new-breakpoint(min-width $mobile-size 4);
+$tablet: new-breakpoint(min-width $tablet-size 8);
+$desktop: new-breakpoint(min-width $desktop-size 10);
+$largedesktop: new-breakpoint(min-width $largedesktop-size 12);

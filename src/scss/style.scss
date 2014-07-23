@@ -1,7 +1,5 @@
 @import 'bourbon';
+@import 'breakpoints';
 @import 'neat';
-@import 'mobile';
+@import 'vars';
 
-body{
-  background: blue;
-}
