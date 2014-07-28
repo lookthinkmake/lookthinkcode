@@ -11,6 +11,8 @@
   },
   "devDependencies": {
     "browser-sync": "^1.3.0",
+    "penthouse": "*",
+    "gulp-html-replace": "^1.1.0",
     "gulp": "^3.8.6",
     "gulp-autoprefixer": "0.0.8",
     "gulp-header": "^1.0.5",

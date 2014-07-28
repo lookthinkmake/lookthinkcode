@@ -1,4 +1,5 @@
 var gulp = require('gulp'),
+    penthouse = require('penthouse'),
     sass = require('gulp-sass'),
     browserSync = require('browser-sync'),
     autoprefixer = require('gulp-autoprefixer'),
@@ -8,6 +9,7 @@ var gulp = require('gulp'),
     rename = require('gulp-rename'),
     watch = require('gulp-watch'),
     minifyCSS = require('gulp-minify-css'),
+    htmlreplace = require('gulp-html-replace'),
     neat = require('node-neat').includePaths,
     package = require('./package.json');
 
@@ -51,6 +53,24 @@ gulp.task('js',function(){
     .pipe(browserSync.reload({stream:true, once: true}));
 });
 
+gulp.task('penthouse', function () {
+    penthouse({
+        url : 'app/index.html',
+        css : 'app/assets/css/style.min.css',
+        width : 400,   // viewport width
+        height : 240   // viewport height
+    }, function(err, criticalCss) {
+        gulp.src('app/index.html')
+        .pipe(htmlreplace({
+            critical: {
+                src: criticalCss,
+                tpl: '<!-- build:critical --><script>%s</script><!-- endbuild -->'
+            }
+        }, keepUnused = true))
+        .pipe(gulp.dest('app/'));;
+    });
+});
+
 gulp.task('browser-sync', function() {
     browserSync.init(null, {
         server: {
@@ -62,9 +82,10 @@ gulp.task('bs-reload', function () {
     browserSync.reload();
 });
 
-gulp.task('default', ['css', 'js', 'browser-sync'], function () {
+gulp.task('default', ['css', 'penthouse', 'js', 'browser-sync'], function () {
     gulp.start('css');
-    gulp.watch("src/scss/*.scss", ['css']);
+    gulp.start('penthouse');
+    gulp.watch("src/scss/*.scss", ['css', 'penthouse']);
     gulp.watch("src/js/*.js", ['js']);
     gulp.watch("app/*.html", ['bs-reload']);
 });
