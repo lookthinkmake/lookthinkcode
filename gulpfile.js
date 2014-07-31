@@ -64,7 +64,7 @@ gulp.task('penthouse', function () {
         .pipe(htmlreplace({
             critical: {
                 src: criticalCss,
-                tpl: '<!-- build:critical --><script>%s</script><!-- endbuild -->'
+                tpl: '<!-- build:critical --><style>%s</style><!-- endbuild -->'
             }
         }, keepUnused = true))
         .pipe(gulp.dest('app/'));;
