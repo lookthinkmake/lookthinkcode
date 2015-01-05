@@ -11,6 +11,8 @@ var gulp = require('gulp'),
     minifyCSS = require('gulp-minify-css'),
     htmlreplace = require('gulp-html-replace'),
     neat = require('node-neat').includePaths,
+    stylish = require('jshint-stylish'),
+    concat = require('gulp-concat'),
     package = require('./package.json');
 
 
@@ -29,7 +31,8 @@ var banner = [
 gulp.task('css', function () {
     return gulp.src('src/scss/style.scss')
     .pipe(sass({
-      includePaths: ['css'].concat(neat)
+        errLogToConsole: true,
+        includePaths: ['css'].concat(neat)
     }))
     .pipe(autoprefixer('last 4 version'))
     .pipe(gulp.dest('app/assets/css'))
@@ -41,16 +44,22 @@ gulp.task('css', function () {
 });
 
 gulp.task('js',function(){
-  gulp.src('src/js/scripts.js')
-    .pipe(jshint('.jshintrc'))
-    .pipe(jshint.reporter('default'))
-    .pipe(header(banner, { package : package }))
-    .pipe(gulp.dest('app/assets/js'))
-    .pipe(uglify())
-    .pipe(header(banner, { package : package }))
-    .pipe(rename({ suffix: '.min' }))
-    .pipe(gulp.dest('app/assets/js'))
-    .pipe(browserSync.reload({stream:true, once: true}));
+    gulp.src('src/js/plugins/*.js')
+        .pipe(concat('plugins.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('app/assets/js'))
+        .pipe(browserSync.reload({stream:true, once: true}));
+
+    gulp.src('src/js/scripts.js')
+        .pipe(jshint('.jshintrc'))
+        .pipe(jshint.reporter(stylish))
+        .pipe(header(banner, { package : package }))
+        .pipe(gulp.dest('app/assets/js'))
+        .pipe(uglify())
+        .pipe(header(banner, { package : package }))
+        .pipe(rename({ suffix: '.min' }))
+        .pipe(gulp.dest('app/assets/js'))
+        .pipe(browserSync.reload({stream:true, once: true}));
 });
 
 gulp.task('penthouse', function () {
